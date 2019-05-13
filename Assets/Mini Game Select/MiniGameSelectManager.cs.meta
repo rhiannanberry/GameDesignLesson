@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a228f70860597babc952321226b77ce8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - miniGamesList: {fileID: 11400000, guid: c19792b2f8b2776279e5cd05735cc4be, type: 2}
+  - miniGameButtonPrefab: {fileID: 144222458389778006, guid: fc8a7f2d5b26c2b9e942f3629537a164,
+      type: 3}
+  - buttonContainer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
