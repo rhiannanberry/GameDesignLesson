@@ -8,7 +8,6 @@ public class MiniGameManager : MonoBehaviour
 {
     public MiniGamesList miniGameList;
 
-    [HideInInspector]
     public MiniGameDetails miniGameDetails;
 
     private bool _running = false;
@@ -18,6 +17,10 @@ public class MiniGameManager : MonoBehaviour
 
     public static float time {
         get { return _instance._time; }
+    }
+
+    public static string gameName {
+        get { return _instance.miniGameDetails.GameName; }
     }
 
 
@@ -64,11 +67,9 @@ public class MiniGameManager : MonoBehaviour
         EventManager.TriggerEvent("Check Run");
     }
     
-    void TimeRanOut() {
-        
-        RunManager.RemoveLife();
+    void TimeRanOut() {        
         Debug.Log("Time Ran Out");
-        GameCompleted();
+        EventManager.TriggerEvent("Game Lost");
     }
 
     void GameLost() {

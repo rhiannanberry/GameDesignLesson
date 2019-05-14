@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac65c4d0709b1b0c697447a67068eb6d, type: 3}
-  m_Name: lkelkelkekl
+  m_Name: NewMiniGameDetails
   m_EditorClassIdentifier: 
   gameName: 
   played: 0
   won: 0
   limitTime: 0
   winTime: -1
+  sceneName: Game 3 Scene

@@ -17,3 +17,4 @@ MonoBehaviour:
   won: 0
   limitTime: 6
   winTime: -1
+  sceneName: SampleScene

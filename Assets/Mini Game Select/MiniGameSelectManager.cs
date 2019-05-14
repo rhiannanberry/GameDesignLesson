@@ -13,12 +13,15 @@ public class MiniGameSelectManager : MonoBehaviour
 
     private GameObject[] miniGameButtonObject;
 
+    string nextSceneName;
+
     void Start()
     {
         SaveLoad.LoadData(miniGamesList.GameList);
         // Should already have buttons in container
         // If not, click "Update Game List UI" button in inspector
         AddButtonListeners();
+        EventManager.StartListening("End Scene", LoadScene);
     }
 
     void Update()
@@ -53,7 +56,8 @@ public class MiniGameSelectManager : MonoBehaviour
         Button[] buttons = buttonContainer.GetComponentsInChildren<Button>();
         for (int i = 0; i < buttons.Length; i++) {
             MiniGameDetails m = miniGames[i];
-            buttons[i].onClick.AddListener(() => LoadScene(m.SceneName));
+            buttons[i].onClick.AddListener(() => nextSceneName = m.SceneName);
+            buttons[i].onClick.AddListener(() => EventManager.TriggerEvent("Transition To"));
             if (!m.Won && i != 0) {
                 buttons[i].interactable = false;
             }
@@ -66,6 +70,10 @@ public class MiniGameSelectManager : MonoBehaviour
 
     private void LoadScene(string sceneName) {
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void LoadScene() {
+        SceneManager.LoadScene(nextSceneName);
     }
 
 

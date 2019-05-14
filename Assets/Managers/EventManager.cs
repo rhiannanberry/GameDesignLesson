@@ -73,3 +73,9 @@ public class EventManager : MonoBehaviour {
         }
     }
 }
+
+[System.Serializable]
+public class EventPair {
+    public string trigger;
+    public UnityEvent triggerActions;
+}

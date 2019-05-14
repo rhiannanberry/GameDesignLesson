@@ -18,6 +18,8 @@ public class MiniGameDetails : ScriptableObject {
     [SerializeField]
     private float winTime = -1f;
 
+    [HideInInspector]
+    [SerializeField]
     private string sceneName;
 
 

@@ -16,6 +16,7 @@ public class RunManager : MonoBehaviour
     void Start()
     {
         if (!_inRun) InitializeRun();
+        EventManager.TriggerEvent("Transition From");
     }
 
     void OnEnable() {
@@ -78,7 +79,7 @@ public class RunManager : MonoBehaviour
         if (d != null) {
             MiniGamesList.CurrentGame = d;
             Debug.Log("LOADING SCENE: " + d.SceneName);
-            EventManager.TriggerEvent("Transition Out");
+            EventManager.TriggerEvent("Transition To");
         } else {
             EndRunWin();
         }
