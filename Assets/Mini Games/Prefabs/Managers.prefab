@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5096401238102425053}
   - component: {fileID: 4809616803123146507}
   - component: {fileID: 3538804144756932840}
+  - component: {fileID: 1411065969159815170}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -72,3 +73,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGameList: {fileID: 11400000, guid: c19792b2f8b2776279e5cd05735cc4be, type: 2}
+--- !u!114 &1411065969159815170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979463772756454739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641334b8335847e4a98bea02730bfaa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inRun: 1
+  currentState: 0

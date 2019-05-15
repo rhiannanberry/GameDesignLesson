@@ -12,7 +12,7 @@ public class FramingUI : MonoBehaviour
     void Start()
     {
         gameName.text = MiniGameManager.gameName;
-        gameInstructions.text = "INSTRUCTIONS";
+        gameInstructions.text = MiniGamesList.CurrentGame.Instructions;
     }
 
     // Update is called once per frame

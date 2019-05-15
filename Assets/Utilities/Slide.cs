@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine.Events;
 public class Slide : MonoBehaviour
 {
+    [Range(0f,10f)]
+    public float timeLength;
     public AnimationCurve curve;
     public EventPair[] events;
     RectTransform rt;
@@ -20,7 +22,7 @@ public class Slide : MonoBehaviour
     public void TransitionFrom() {
         rt = GetComponent<RectTransform>();
         float expectedValue = curve[curve.length - 1].value;
-        StartCoroutine(Coroutines.InterpolateCurve(curve, 1.5f,(value)=> {
+        StartCoroutine(Coroutines.InterpolateCurve(curve, timeLength,(value)=> {
             if (value == expectedValue) {
                 gameObject.SetActive(false);
                 return;
@@ -33,7 +35,7 @@ public class Slide : MonoBehaviour
     public void TransitionTo() {
         rt = GetComponent<RectTransform>();
         float expectedValue = curve[curve.length - 1].value;
-        StartCoroutine(Coroutines.InterpolateCurve(curve, 1.5f,(value)=> {
+        StartCoroutine(Coroutines.InterpolateCurve(curve, timeLength,(value)=> {
             if (value == expectedValue) {
                 gameObject.SetActive(false);
                 return;

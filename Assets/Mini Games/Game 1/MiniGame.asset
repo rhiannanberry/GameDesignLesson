@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac65c4d0709b1b0c697447a67068eb6d, type: 3}
   m_Name: MiniGame
   m_EditorClassIdentifier: 
-  gameName: Wow it's a game
+  gameName: Meowmy!!!
+  instructions: Go hug baby kitty.
   played: 0
   won: 0
   limitTime: 6

@@ -33,16 +33,17 @@ public class MiniGameManager : MonoBehaviour
     }
 
     void OnEnable() {
-        EventManager.StartListening("Start Scene", StartGame);
+        EventManager.StartListening("Start Scene", StartScene);
+        EventManager.StartListening("Start Game", StartGame);
         EventManager.StartListening("Time Ran Out", TimeRanOut);
-        EventManager.StartListening("Game Lost", GameLost);
-        EventManager.StartListening("Game Won", GameWon);
+        EventManager.StartListening("Game Lose", GameLost);
+        EventManager.StartListening("Game Win", GameWon);
     }
 
     void OnDisable() {
         EventManager.StopListening("Time Ran Out", TimeRanOut);
-        EventManager.StopListening("Game Lost", GameLost);
-        EventManager.StopListening("Game Won", GameWon);
+        EventManager.StopListening("Game Lose", GameLost);
+        EventManager.StopListening("Game Win", GameWon);
     }
 
     void Update() {
@@ -55,8 +56,11 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-    void StartGame() {
+    void StartScene() {
         _time = miniGameDetails.LimitTime;
+    }
+
+    void StartGame() {
         _running = true;
     }
 
@@ -69,12 +73,12 @@ public class MiniGameManager : MonoBehaviour
     
     void TimeRanOut() {        
         Debug.Log("Time Ran Out");
-        EventManager.TriggerEvent("Game Lost");
+        EventManager.TriggerEvent("Game Lose");
     }
 
     void GameLost() {
         RunManager.RemoveLife();
-        Debug.Log("Game Lost");
+        Debug.Log("Game Lose");
         GameCompleted();
     }
 
@@ -83,7 +87,7 @@ public class MiniGameManager : MonoBehaviour
         miniGameDetails.WinTime = miniGameDetails.LimitTime - _time;
         RunManager.AddCompletedLevel(miniGameDetails);
         
-        Debug.Log("Game Won");
+        Debug.Log("Game Win");
         GameCompleted();
     }
 }

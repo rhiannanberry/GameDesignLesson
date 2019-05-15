@@ -57,6 +57,7 @@ public class MiniGameSelectManager : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++) {
             MiniGameDetails m = miniGames[i];
             buttons[i].onClick.AddListener(() => nextSceneName = m.SceneName);
+            buttons[i].onClick.AddListener(() => EventManager.TriggerEvent("Start Exit"));
             buttons[i].onClick.AddListener(() => EventManager.TriggerEvent("Transition To"));
             if (!m.Won && i != 0) {
                 buttons[i].interactable = false;

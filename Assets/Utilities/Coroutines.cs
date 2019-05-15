@@ -52,6 +52,13 @@ public class Coroutines
         }
         position(endValue);
     }
+
+    public static IEnumerator WaitTime(float seconds, System.Action<bool> complete) {
+        complete(false);
+        yield return new WaitForSeconds(seconds);
+        complete(true);
+        
+    }
 }
 
 

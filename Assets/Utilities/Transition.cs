@@ -5,65 +5,82 @@ using UnityEngine.UI;
 
 public class Transition : MonoBehaviour
 {
+    [Header("Transition Type")]
     public bool fade;
 
-    [Range(0, 10)]
-    public float timeLengthFrom, timeLengthTo;
-    public AnimationCurve curveFrom, curveTo;
+    [Header("Transition")]
+    public bool enter = true;
+    public bool exit = true;
+
+    [Header("Transition Data")]
+    public TransitionData entering;
+    public TransitionData exiting;
     Image _img;
     RectTransform _rt;
+    
     // Start is called before the first frame update
     void Awake()
     {
         _img = GetComponent<Image>();
         _rt = GetComponent<RectTransform>();
         _img.enabled = true;
-        _img.SetAlpha(0f);
+        _img.SetAlpha(enter ? 1f : 0f);
+    }
+    void OnEnable() {
+        if (enter) EventManager.StartListening("Start Enter", TransitionFrom);
+        if (exit) EventManager.StartListening("Start Exit", TransitionTo);
     }
 
-    void OnEnable() {
-        //TransitionFrom();
-        EventManager.StartListening("Transition From", TransitionFrom);
-        EventManager.StartListening("Transition To", TransitionTo);
+    void RunTransition(bool isEntering, TransitionData t) {
+        _img.SetAlpha(1f);
+        bool triggered = false;
+        float expectedValue = t.curve[t.curve.length - 1].value;
+        StartCoroutine(Coroutines.InterpolateCurve(t.curve, t.timeLength, (value)=> {
+            
+            if (fade) {
+                _img.SetAlpha(isEntering ? 1f - value : value);
+            } else {
+                _rt.anchorMin = new Vector2(isEntering ? value : value-1f, _rt.anchorMin.y);
+                _rt.anchorMax = new Vector2(isEntering ? value + 1: value, _rt.anchorMax.y);
+            }
+
+            if (!triggered && value == expectedValue) {
+                triggered = true;
+                WaitTimePost(isEntering, t.postDelay);
+            }
+        }));
+
+    }
+
+    void WaitTimePost(bool isEntering, float time) {
+        StartCoroutine(Coroutines.WaitTime(time, (complete) => {
+            if (complete) {
+                if (isEntering) EventManager.TriggerEvent("End Enter");
+                if (!isEntering) EventManager.TriggerEvent("End Exit");
+            }
+        }));
+    }
+
+    void WaitTimePre(bool isEntering, TransitionData t) {
+        StartCoroutine(Coroutines.WaitTime(t.preDelay, (complete) => {
+            if (complete) RunTransition(isEntering, t);
+        }));
     }
 
 
     void TransitionTo() {
-        _img.SetAlpha(1f);
-        float expectedValue = curveTo[curveTo.length - 1].value;
-        bool triggered = false;
-        StartCoroutine(Coroutines.InterpolateCurve(curveTo, timeLengthTo,(value)=> {
-            if (fade) {
-                _img.SetAlpha(value);
-            } else {
-                _rt.anchorMin = new Vector2(value-1f, _rt.anchorMin.y);
-                _rt.anchorMax = new Vector2(value, _rt.anchorMax.y);
-            }
-
-            if (!triggered && value == expectedValue) {
-                triggered = true;
-                EventManager.TriggerEvent("End Scene");
-            }
-
-        }));
+        WaitTimePre(false, exiting);
     }
 
     void TransitionFrom() {
-        _img.SetAlpha(1f);
-        float expectedValue = curveFrom[curveFrom.length - 1].value;
-        bool triggered = false;
-        StartCoroutine(Coroutines.InterpolateCurve(curveFrom, timeLengthFrom,(value)=> {
-            if (fade) {
-                _img.SetAlpha(1f - value);
-            } else {
-            
-                _rt.anchorMin = new Vector2(value, _rt.anchorMin.y);
-                _rt.anchorMax = new Vector2(value + 1f, _rt.anchorMax.y);
-            }
-            if (!triggered && value == expectedValue) {
-                triggered = true;
-                EventManager.TriggerEvent("Start Scene");
-            }
-        }));
+        WaitTimePre(true, entering);
     }
+
+}
+
+[System.Serializable]
+public class TransitionData {
+    [Range(0, 10)]
+    public float preDelay, timeLength, postDelay;
+    public AnimationCurve curve;
 }

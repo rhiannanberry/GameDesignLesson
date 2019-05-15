@@ -10,6 +10,8 @@ public class MiniGameDetails : ScriptableObject {
     [SerializeField]
     public string gameName;
     [SerializeField]
+    private string instructions;
+    [SerializeField]
     private bool played = false;
     [SerializeField]
     private bool won = false;
@@ -33,6 +35,11 @@ public class MiniGameDetails : ScriptableObject {
     public string GameName {
         get {return gameName;}
         set {gameName = value;}
+    }
+
+    public string Instructions {
+        get {return instructions;}
+        set {instructions = value;}
     }
 
     public bool Played {

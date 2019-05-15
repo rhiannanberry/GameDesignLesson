@@ -13,13 +13,13 @@ public class Timer : MonoBehaviour
     {
         t = GetComponent<TextMeshProUGUI>();
         EventManager.StartListening("Time Ran Out", TimeRanOut);
-        EventManager.StartListening("Game Won", StopTimer);
-        EventManager.StartListening("Game Lost", StopTimer);
+        EventManager.StartListening("Game Win", StopTimer);
+        EventManager.StartListening("Game Lose", StopTimer);
     }
 
     void OnDisable() {
-        EventManager.StopListening("Game Won", StopTimer);
-        EventManager.StopListening("Game Lost", StopTimer);
+        EventManager.StopListening("Game Win", StopTimer);
+        EventManager.StopListening("Game Lose", StopTimer);
     }
 
     void Update() {
