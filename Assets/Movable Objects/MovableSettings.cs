@@ -6,8 +6,10 @@ using UnityEngine;
 public class MovableSettings : ScriptableObject
 {
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float jumpSpeed = 20f;
     [SerializeField] private bool useAi = false;
 
     public float MoveSpeed { get { return moveSpeed; } } 
+    public float JumpSpeed { get { return jumpSpeed; } }
     public bool UseAi { get { return useAi; } }
 }

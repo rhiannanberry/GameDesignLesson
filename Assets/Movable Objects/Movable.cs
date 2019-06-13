@@ -4,23 +4,33 @@ using UnityEngine;
 
 public abstract class Movable : MonoBehaviour
 {
-    [SerializeField] private MovableSettings movableSettings;
+    [SerializeField] protected MovableSettings movableSettings;
+    private StateManager sm;
+    public static bool canMove = false;
 
-    //private IMovableInput movableInput;
-    //private MovableMover movableMover;
 
     private void Awake() {
-        //movableInput = movableSettings.UseAi ? new PlayerMovableInput() as IMovableInput : new PlayerMovableInput();
-        //TODO: manage different movement schemes
-        //movableMover = new MovableMover(movableInput, transform, movableSettings); 
+        sm = FindObjectOfType<StateManager>();
+        if (sm == null) {
+            Debug.LogError("Objects inheriting from the Movable class require a state manager to be in the scene.");
+        }
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         //TODO: Disable read input before and after game
-        ReadInput();
         Tick();
     }
 
+    private void Update() {
+        if (sm.currentState == State.inGame) {
+            ReadInput();
+        } else {
+            ClearInput();
+        }
+    }
+
     protected abstract void ReadInput();
+    protected abstract void ClearInput();
     protected abstract void Tick();
+
 }
