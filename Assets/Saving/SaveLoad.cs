@@ -24,9 +24,9 @@ public class SaveLoad
         PlayerPrefs.SetInt(m.SaveWon, m.Won ? 1 : 0);
     }
 
-    [MenuItem("Saving/Clear Level Saves")]
+    //[MenuItem("Saving/Clear Level Saves")]
     static public void ClearSave() {
-        string[] guids = AssetDatabase.FindAssets("t:MiniGamesList");
+        /*string[] guids = AssetDatabase.FindAssets("t:MiniGamesList");
         MiniGamesList[] a = new MiniGamesList[guids.Length];
         for (int i = 0; i < guids.Length; i++) {
             string path = AssetDatabase.GUIDToAssetPath(guids[i]);
@@ -35,6 +35,6 @@ public class SaveLoad
                 m.ResetValues();
                 SaveLevel(m);
             }
-        }
+        }*/
     }
 }

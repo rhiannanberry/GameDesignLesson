@@ -66,11 +66,11 @@ public class MiniGameDetails : ScriptableObject {
         get {return sceneName;}
         set {
                 sceneName = value;
-                if(Application.isEditor) {
+                /*if(Application.isEditor) {
                     EditorUtility.SetDirty(this);
                     AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();
-                }
+                }*/
             }
     }
 
