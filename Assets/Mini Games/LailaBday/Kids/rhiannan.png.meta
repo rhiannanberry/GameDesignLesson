@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 619d4dd2aa59c19f186849e1f93dad31
+guid: 167e873be7aec50d591b0a70aff6f382
 TextureImporter:
   fileIDToRecycleName:
-    21300000: candle_0
-    21300002: candle_1
-    21300004: candle_2
+    21300000: rhiannan_0
+    21300002: rhiannan_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -48,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: candle_0
+      name: rhiannan_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 28
-        height: 64
+        width: 120
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,19 +111,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbf8837c46c5827749d4db5ced81ee0c
+      spriteID: efce7cd89280ae8e6bbc5bf4e4662745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: candle_1
+      name: rhiannan_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 120
         y: 0
-        width: 28
-        height: 64
+        width: 120
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,27 +131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2218a3c24db656f1bd9aa9d2b642396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: candle_2
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 28
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d8188aef641779a5a35db42616814fd
+      spriteID: 220d066e787237e548bbe7fb3baf9f87
       vertices: []
       indices: 
       edges: []
@@ -160,7 +139,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d2990ef070d45948295e4644066ba9a5
+    spriteID: d918600e5e1b8e5ffbb16f407f2945bc
     vertices: []
     indices: 
     edges: []

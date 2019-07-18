@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac65c4d0709b1b0c697447a67068eb6d, type: 3}
-  m_Name: Blow
+  m_Name: Present
   m_EditorClassIdentifier: 
-  gameName: Do What You Do Best ;)
-  instructions: Blow out all candles by clicking on them
+  gameName: OPEN
+  instructions: Pound that spacebar to open your gift!
   played: 1
   won: 1
-  limitTime: 12
-  winTime: 9.472733
-  sceneName: LailaBdayBlow
+  limitTime: 5
+  winTime: 0
+  sceneName: LailaBdayPresent

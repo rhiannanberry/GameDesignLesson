@@ -34,7 +34,7 @@ public class RunManager : MonoBehaviour
     void InitializeRun() {
         _inRun = true;
         _lives = 3;
-        _runLength = miniGameList.GetCount();
+        _runLength = miniGameList.GetCount() + 1;
         _playedGames = new List<MiniGameDetails>();
     }
 

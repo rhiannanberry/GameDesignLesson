@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 619d4dd2aa59c19f186849e1f93dad31
+guid: 1ef6eb98ccbd2b902a295d97e4a08086
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: candle_0
-    21300002: candle_1
-    21300004: candle_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -43,12 +40,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,71 +93,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: candle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 28
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbf8837c46c5827749d4db5ced81ee0c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: candle_1
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 0
-        width: 28
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f2218a3c24db656f1bd9aa9d2b642396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: candle_2
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 0
-        width: 28
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d8188aef641779a5a35db42616814fd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d2990ef070d45948295e4644066ba9a5
+    spriteID: 7fbeb400ffeceff95a6a473851d75582
     vertices: []
     indices: 
     edges: []

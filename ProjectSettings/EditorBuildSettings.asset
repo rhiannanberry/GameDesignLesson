@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mini Games/LailaBday/LailaBdayBlow.unity
     guid: f17ed52cbb96745f7b343eae7c3056ec
+  - enabled: 1
+    path: Assets/Mini Games/LailaBday/LailaBdayPresent.unity
+    guid: 9fb55f06c3b97d0d39ac10d4f2346f21
+  - enabled: 1
+    path: Assets/Mini Games/LailaBday/LailaBdayVisit.unity
+    guid: 835cb4135fee2cccd81f28d7095457b4
   m_configObjects: {}

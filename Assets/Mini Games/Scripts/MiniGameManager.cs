@@ -64,10 +64,11 @@ public class MiniGameManager : MonoBehaviour
         _running = true;
     }
 
-    void GameCompleted() {
+    IEnumerator GameCompleted() {
         _running = false;
         miniGameDetails.Played = true;
         SaveLoad.SaveLevel(miniGameDetails);
+         yield return new WaitForSeconds(2);
         EventManager.TriggerEvent("Check Run");
     }
     
@@ -79,7 +80,7 @@ public class MiniGameManager : MonoBehaviour
     void GameLost() {
         RunManager.RemoveLife();
         Debug.Log("Game Lose");
-        GameCompleted();
+        StartCoroutine(GameCompleted());
     }
 
     void GameWon() {
@@ -88,6 +89,6 @@ public class MiniGameManager : MonoBehaviour
         RunManager.AddCompletedLevel(miniGameDetails);
         
         Debug.Log("Game Win");
-        GameCompleted();
+        StartCoroutine(GameCompleted());
     }
 }
