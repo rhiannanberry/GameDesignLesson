@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac65c4d0709b1b0c697447a67068eb6d, type: 3}
-  m_Name: MiniGame
+  m_Name: Blow
   m_EditorClassIdentifier: 
-  gameName: Meowmy!!!
-  instructions: Go hug baby kitty.
+  gameName: Do What You Do Best ;)
+  instructions: Blow out all candles by clicking on them
   played: 1
-  won: 1
-  limitTime: 6
-  winTime: 1.7792044
+  won: 0
+  limitTime: 10
+  winTime: -1
   sceneName: LailaBday
