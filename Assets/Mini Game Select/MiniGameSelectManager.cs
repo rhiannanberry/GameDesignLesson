@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class MiniGameSelectManager : MonoBehaviour
 {
@@ -24,13 +25,10 @@ public class MiniGameSelectManager : MonoBehaviour
         EventManager.StartListening("End Scene", LoadScene);
     }
 
-    void Update()
-    {
-        
-    }
     public void UpdateGameListUI() {
         DeleteOldButtons();
         AddNewButtons();
+        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 
 
@@ -44,9 +42,18 @@ public class MiniGameSelectManager : MonoBehaviour
     private void AddNewButtons() {
         MiniGameDetails[] miniGames = miniGamesList.GameList;
         miniGameButtonObject = new GameObject[miniGames.Length];
+        bool first = true;
         foreach (MiniGameDetails d in miniGames) {
             GameObject go = Instantiate(miniGameButtonPrefab, buttonContainer);
             go.GetComponentInChildren<TextMeshProUGUI>().text = d.GameName;
+            Button b = go.GetComponent<Button>();
+            if (!d.Won && !first) {
+                b.interactable = false;
+            }
+            if (!d.Played) {
+                go.GetComponentInChildren<TextMeshProUGUI>().text = "?";
+            }
+            first = false;
         }
     }
 
@@ -59,12 +66,7 @@ public class MiniGameSelectManager : MonoBehaviour
             buttons[i].onClick.AddListener(() => nextSceneName = m.SceneName);
             buttons[i].onClick.AddListener(() => EventManager.TriggerEvent("Start Exit"));
             buttons[i].onClick.AddListener(() => EventManager.TriggerEvent("Transition To"));
-            if (!m.Won && i != 0) {
-                buttons[i].interactable = false;
-            }
-            if (!m.Played) {
-                buttons[i].gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "?";
-            }
+            
         }
     }
 

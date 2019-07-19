@@ -2,12 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Relies on the EventManager system.
+    
+    Transmits/Triggers state changes that are important for various
+    systems and objects.
+
+    STATES:
+        inEnter
+        inScene
+        inGame
+        inExit
+        inPause
+
+    STATE EVENTS:
+        Start Enter
+        End Enter
+        Start Game
+        End Game
+        Start Scene
+        End Scene
+        Start Exit
+        End Exit
+        Start Pause
+        End Pause
+
+ */
+
 public class StateManager : MonoBehaviour
 {
-    public bool inRun = true;
+    [SerializeField] private bool inRun = true;
     private State pausedState = State.inScene;
+    [SerializeField] private State currentState = State.inScene;
 
-    public State currentState = State.inScene;
+    public State CurrentState { get { return currentState; } }
+
+    private void Awake() {
+        if (FindObjectOfType<EventManager>() == null) {
+            Debug.LogError("StateManager requires having an EventManager in the scene.");
+        }
+    }
+
     void Start()
     {
         GameState.inRun = inRun;
@@ -27,7 +62,6 @@ public class StateManager : MonoBehaviour
         EventManager.StartListening("End Pause", EndPause);
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentState = GameState.state;

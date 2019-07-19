@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EventManager : MonoBehaviour {
 
@@ -71,6 +72,10 @@ public class EventManager : MonoBehaviour {
         {
             thisEvent.Invoke ();
         }
+    }
+
+    public static string[] GetEvents() {
+        return instance.eventDictionary.Keys.ToArray();
     }
 }
 

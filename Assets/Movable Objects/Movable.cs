@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Use this script as a basis for moving objects.
+    With this structure, user input will be ignored before/after
+    the duration of the mini-game (See if-statement in Update)
+
+
+
+ */
+
 public abstract class Movable : MonoBehaviour
 {
     [SerializeField] protected MovableSettings movableSettings;
     private StateManager sm;
-    public static bool canMove = false;
-
 
     private void Awake() {
         sm = FindObjectOfType<StateManager>();
@@ -22,7 +29,7 @@ public abstract class Movable : MonoBehaviour
     }
 
     private void Update() {
-        if (sm.currentState == State.inGame) {
+        if (sm.CurrentState == State.inGame) {
             ReadInput();
         } else {
             ClearInput();
