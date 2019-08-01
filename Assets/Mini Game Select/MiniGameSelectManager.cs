@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+[ExecuteAlways]
 public class MiniGameSelectManager : MonoBehaviour
 {
     public MiniGamesList miniGamesList;
@@ -15,12 +16,16 @@ public class MiniGameSelectManager : MonoBehaviour
 
     string nextSceneName;
 
-    void Start()
+    void Awake()
     {
-        SaveLoad.LoadData(miniGamesList.GameList);
+        SaveLoad.LoadData(miniGamesList);
+
+        UpdateGameListUI();
+        
         // Should already have buttons in container
         // If not, click "Update Game List UI" button in inspector
         AddButtonListeners();
+        
         EventManager.StartListening("End Scene", LoadScene);
     }
 

@@ -15,5 +15,5 @@ MonoBehaviour:
   gameList:
     array:
     - {fileID: 11400000, guid: 5a83e25b315a3f66893d16a992afcac2, type: 2}
-    - {fileID: 11400000, guid: 56cc025fa2881aa70bc5f8b1c5cce51e, type: 2}
     - {fileID: 11400000, guid: 54bb8c67780fd851696679936c5b9280, type: 2}
+    - {fileID: 11400000, guid: 56cc025fa2881aa70bc5f8b1c5cce51e, type: 2}

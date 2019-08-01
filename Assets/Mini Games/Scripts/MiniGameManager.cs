@@ -27,9 +27,15 @@ public class MiniGameManager : MonoBehaviour
     void Awake()
     {
         _instance = this;
-        SaveLoad.LoadData(miniGameList.GameList);
+
+        if (Application.isEditor)
+            SaveLoad.LoadData(miniGameList);
 
         MiniGamesList.CurrentGame = miniGameDetails;
+    }
+
+    void Start() {
+        RunManager.Instance.Start();
     }
 
     void OnEnable() {
@@ -68,7 +74,8 @@ public class MiniGameManager : MonoBehaviour
         _running = false;
         miniGameDetails.Played = true;
         SaveLoad.SaveLevel(miniGameDetails);
-         yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2);
+        Debug.Log("CHECK RUN PLS?");
         EventManager.TriggerEvent("Check Run");
     }
     
@@ -78,7 +85,7 @@ public class MiniGameManager : MonoBehaviour
     }
 
     void GameLost() {
-        RunManager.RemoveLife();
+        RunManager.Instance.RemoveLife();
         Debug.Log("Game Lose");
         StartCoroutine(GameCompleted());
     }
@@ -86,7 +93,7 @@ public class MiniGameManager : MonoBehaviour
     void GameWon() {
         miniGameDetails.Won = true;
         miniGameDetails.WinTime = miniGameDetails.LimitTime - _time;
-        RunManager.AddCompletedLevel(miniGameDetails);
+        RunManager.Instance.AddCompletedLevel(miniGameDetails);
         
         Debug.Log("Game Win");
         StartCoroutine(GameCompleted());

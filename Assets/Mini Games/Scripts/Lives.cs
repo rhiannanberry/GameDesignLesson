@@ -13,7 +13,7 @@ public class Lives : MonoBehaviour
 
     void Update() {
         for (int i = 0; i < 3; i++ ){
-            lives[i].enabled = !(i + 1 > RunManager.Lives );
+            lives[i].enabled = !(i + 1 > RunManager.Instance.Lives );
         }
     }
 }

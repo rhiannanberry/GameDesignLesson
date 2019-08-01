@@ -3,33 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RunManager : MonoBehaviour
+public class RunManager : Singleton<RunManager>
 {
     public MiniGamesList miniGameList;
 
-    private static bool _inRun = false;
-    private static int _lives = 3;
-    private static int _runLength;
-    private static List<MiniGameDetails> _playedGames;
+    private bool _inRun = false;
+    private int _lives = 3;
+    private int _runLength;
+    private List<MiniGameDetails> _playedGames;
 
-
-    void Start()
+    public void Start()
     {
         if (!_inRun) InitializeRun();
-        //EventManager.TriggerEvent("Transition From");
+
+        FlushListeners();
+        AssignListeners();
     }
 
-    void OnEnable() {
+    public void OnEnable() {
+        FlushListeners();
+        AssignListeners();
+    }
+
+    void OnDisable() {
+        FlushListeners();
+    }
+
+    private void AssignListeners() {
+        Debug.Log("ASSIGNING");
         EventManager.StartListening("Run Lost", EndRunLose);
         EventManager.StartListening("Run Win", EndRunWin);
         EventManager.StartListening("End Scene", EndSceneNextGame);
         EventManager.StartListening("Check Run", CheckRunContinue);
     }
-
-    void OnDisable() {
+    private void FlushListeners() {
         EventManager.StopListening("Run Lost", EndRunLose);
         EventManager.StopListening("Run Win", EndRunWin);
+        EventManager.StopListening("End Scene", EndSceneNextGame);
+        EventManager.StopListening("Check Run", CheckRunContinue);
     }
+
 
     void InitializeRun() {
         _inRun = true;
@@ -38,35 +51,37 @@ public class RunManager : MonoBehaviour
         _playedGames = new List<MiniGameDetails>();
     }
 
-    static void EndRun() {
+    void EndRun() {
         _inRun = false;
         SceneManager.LoadScene(0);
 
     }
 
-    public static void EndRunLose() {
+    public void EndRunLose() {
         Debug.Log("Run Lost");
         EndRun();
     }
 
-    private static void EndRunWin() {
+    private void EndRunWin() {
         Debug.Log("Run Won");
         EndRun();
     }
 
-    public static void RemoveLife() {
+    public void RemoveLife() {
         _lives -= 1;
         //if (_lives == 0) EventManager.TriggerEvent("Run Lost");
     }
 
-    public static void AddCompletedLevel(MiniGameDetails m) {
+    public void AddCompletedLevel(MiniGameDetails m) {
         _playedGames.Add(m);
         if (_runLength == _playedGames.Count) EventManager.TriggerEvent("Run Won");
     }
 
-    public static int Lives {
-        get {return _lives;}
-    }
+    public int Lives { get { return _lives; } }
+
+    public bool InRun { get { return _inRun; } }
+
+    public int RunLength { get { return _runLength; } }
 
     void CheckRunContinue() {
         Debug.Log("CHECKING RUN");
@@ -79,7 +94,7 @@ public class RunManager : MonoBehaviour
         if (d != null) {
             MiniGamesList.CurrentGame = d;
             Debug.Log("LOADING SCENE: " + d.SceneName);
-            EventManager.TriggerEvent("Start Exit");
+            EventManager.TriggerEvent("End Game");
             EventManager.TriggerEvent("Transition To");
         } else {
             EndRunWin();
