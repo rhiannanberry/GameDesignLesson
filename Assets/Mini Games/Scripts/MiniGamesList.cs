@@ -33,6 +33,19 @@ public class MiniGamesList : ScriptableObject {
         }
     }
 
+    public MiniGame[] MiniGameList {
+        get {
+
+            MiniGame[] ms = new MiniGame[GetCount()];
+            MiniGameDetails[] gl = GameList;
+            
+            for (int i = 0; i < GetCount(); i++) {
+                ms[i] = gl[i].ToMiniGame();
+            }
+            return ms;
+        }
+    }
+
     public static MiniGameDetails CurrentGame {
         get { return currentGame; }
         set { currentGame = value; }

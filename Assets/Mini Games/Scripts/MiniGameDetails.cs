@@ -90,5 +90,9 @@ public class MiniGameDetails : ScriptableObject {
             return "winTime_" + GameName;
         }
     }
+
+    public MiniGame ToMiniGame() {
+        return new MiniGame(gameName, instructions, sceneName, played, won, limitTime, winTime);
+    }
 }
 
